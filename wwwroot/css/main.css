@@ -41,12 +41,11 @@ header a {
     grid-area: home;
     font-size: 2em;
     padding: 5px 0;
-    border-bottom: 1px solid #000;
     transition: 250ms;
 }
 
 .home-btn:hover {
-    border-bottom: 1px solid #B10DC9;
+    color: #B10DC9;
 }
 
 footer {
@@ -148,4 +147,66 @@ main {
 
 .intro h2 {
     margin: 0;
+}
+
+/* 
+##################################################
+                   FORMS
+##################################################
+*/
+
+.form-container {
+    width: 320px;
+    margin: 0 auto;
+    background: #1e2833;
+    color: #FFF;
+    padding: 20px 0 40px;
+    text-align: left;
+}
+
+.form-container h1 {
+    text-align: center;
+}
+
+form {
+    width: 220px;
+    display: grid;
+    grid: repeat(5, auto) / 1fr;
+    margin: 0 auto;
+    color: #8a95a0;
+}
+
+form:focus {
+    background: #000;
+    border: 0;
+    outline: 0;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    margin: 2px 0 30px;
+    background: #1e2833;
+    padding: 5px;
+    border: 0;
+    color: #8a95a0;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+}
+
+input[type="submit"] {
+    border: 0;
+    color: #FFF;
+    padding: 11px;
+    border-radius: 4px;
+    background: #214a80;
+}
+
+.login-create {
+    border: 0;
+    color: #FFF;
+    padding: 11px;
+    border-radius: 4px;
+    background: #214a80;
+    text-decoration: none;
+    margin: 20px 0;
+    text-align: center;
 }
