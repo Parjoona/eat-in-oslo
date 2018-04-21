@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin || @ViewData["Title"]</title>
+    <title>EatInOslo || Admin</title>
     <link rel="stylesheet" href="~/css/admin.css">
 </head>
 <body>
     <header>
-        <a asp-controller="Admin" asp-action="Index">Admin</a>
-        <a asp-controller="Admin" asp-action="NewResturant">+Resturant</a>
-        <a asp-controller="Admin" asp-action="Resturants">Resturants</a>
-        <a asp-controller="Admin" asp-action="Reviews">Reviews</a>
-        <a asp-controller="Admin" asp-action="Index">Admin</a>
+        <a class="home-btn" asp-controller="Admin" asp-action="Index">Admin</a>
+        <a class="plus-resturant-btn" asp-controller="Admin" asp-action="NewResturant">+Resturant</a>
+        <a class="resturants-btn" asp-controller="Admin" asp-action="Resturants">Resturants</a>
+        <a class="reviews-btn" asp-controller="Admin" asp-action="Reviews">Reviews</a>
+        <a class="back-btn" asp-controller="Home" asp-action="Index">Back to mainpage</a>
     </header>
-    @RenderBody()
+    <main>
+        @RenderBody()
+    </main>
 </body>
 </html>

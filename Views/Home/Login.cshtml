@@ -1,16 +1,20 @@
+<div class="container">
 @{
     if (ViewData["login"] != null)
     {
         <p>Already logged in as @ViewData["login"]</p>
     } else {
-        <form asp-action="Login" asp-controller="Home">
-            Username:
-            <input type="text" name="name">
-            Password:
-            <input type="password" name="password">
-            <input type="submit" value="Login">
-        </form>
+        <div class="form-container">
+            <form asp-action="Login" asp-controller="Home">
+                <p>Username:</p>
+                <input type="text" name="name">
+                <p>Password:</p>
+                <input type="password" name="password">
+                <input type="submit" value="Login">
+            </form>
+        </div>
     }
 }
 
 <a asp-controller="Home" asp-action="CreateLogin">Create new login</a>
+</div>

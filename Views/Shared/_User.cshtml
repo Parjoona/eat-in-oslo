@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin || @ViewData["Title"]</title>
+    <title>EatInOslo || @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/main.css">
 </head>
 <body>
     <header>
-        <a asp-controller="Home" asp-action="Index">Home</a>
-        <a asp-controller="Home" asp-action="Login">Login</a>
+        <a class="home-btn" asp-controller="Home" asp-action="Index">HOME</a>
+        <a class="login-btn" asp-controller="Home" asp-action="Login">Login</a>
+        <a class="signup-btn" asp-controller="Home" asp-action="CreateLogin">Sign Up</a>
     </header>
-        @RenderBody()
+        <main>
+            @RenderBody()
+        </main>
     <footer>
-        <a asp-controller="Admin" asp-action="Index">Admin</a>
+        <a class="admin-btn" asp-controller="Admin" asp-action="Index">Admin</a>
+        <a class="twitter-btn" href="http://www.twitter.com">Twitter</a>
+        <a class="fb-btn" href="http://www.facebook.com">Facebook</a>
+        <a class="github-btn" href="http://www.github.com/WesterOne">Github</a>
     </footer>
 </body>
 </html>

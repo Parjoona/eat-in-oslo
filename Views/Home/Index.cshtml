@@ -1,12 +1,17 @@
 @model IEnumerable<Resturant>
 
-<div class="contariner">
+<div class="intro">
+    <h2>Resturants near you</h2>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis nulla eligendi iste delectus ipsa sequi ab consectetur minus, ut vitae sit perferendis cum vero nostrum mollitia.</p>
+</div>
+
+<div class="container">
     @foreach (Resturant r in Model)
     {
         <a asp-controller="Home" asp-action="Resturant" asp-route-id="@r.ID">
             <div class="product">
-                <h3 class="product-title">@r.name</h3>
                 <img src="~/image/resturants/@r.imgurl" alt="resturant">
+                <h3 class="product-title">@r.name</h3>
             </div>
         </a>
     }

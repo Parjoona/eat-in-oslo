@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body, html {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* 
+##################################################
+                   _LAYOUT
+##################################################
+*/
+
+header {
+    position: relative;
+    width: 100%;
+    padding: 5px 0;
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
+    /* GRID */
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-areas: 
+    "home . . resturants reviews . plus . back back";
+}
+ 
+header a {
+    text-decoration: none;
+    text-align: center;
+    color: #000;
+    transition: 200ms;
+    border: 1px solid transparent;
+}
+
+header a:hover {
+    border-bottom: 1px solid purple;
+}
+
+.resturants-btn {
+    grid-area: resturants;
+}
+
+.reviews-btn {
+    grid-area: reviews;
+}
+
+.plus-resturant-btn {
+    grid-area: plus;
+}
+
+.home-btn {
+    grid-area: home;
+}
+
+.back-btn {
+    grid-area: back;
+}
+
+/* 
+##################################################
+                   MAIN
+##################################################
+*/
+
+main {
+    width: 960px;
+    margin: 0 auto;
+    padding: 40px 0;
+    text-align: center;
+}
+
+/* 
+##################################################
+                   FORMS
+##################################################
+*/
+
+.form-container {
+    width: 320px;
+    margin: 0 auto;
+    background: #1e2833;
+    color: #FFF;
+    padding: 20px 0;
+    text-align: left;
+}
+
+.form-container h1 {
+    text-align: center;
+}
+
+form {
+    width: 220px;
+    display: grid;
+    grid: repeat(5, auto) / 1fr;
+    margin: 0 auto;
+    color: #8a95a0;
+}
+
+form:focus {
+    background: #000;
+    border: 0;
+    outline: 0;
+}
+
+input[type="text"], input[type="password"] {
+    margin: 2px 0 30px;
+    background: #1e2833;
+    padding: 5px;
+    border: 0;
+    color: #8a95a0;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+}
+
+input[type="submit"] {
+    border: 0;
+    color: #FFF;
+    padding: 11px;
+    border-radius: 4px;
+    background: #214a80;
+}
