@@ -1,0 +1,13 @@
+@model IEnumerable<Resturant>
+
+<div class="contariner">
+    @foreach (Resturant r in Model)
+    {
+        <a asp-controller="Home" asp-action="Resturant" asp-route-id="@r.ID">
+            <div class="product">
+                <h3 class="product-title">@r.name</h3>
+                <img src="~/image/resturants/@r.imgurl" alt="resturant">
+            </div>
+        </a>
+    }
+</div>

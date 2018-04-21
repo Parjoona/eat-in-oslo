@@ -1,0 +1,20 @@
+@model IEnumerable<Resturant>
+
+<div class="table-admin">
+    <p>ID</p>
+    <p>Name</p>
+    <p>EDIT</p>
+    <p>DELETE</p>
+</div>
+
+@{
+    foreach (Resturant res in Model)
+    {
+        <div class="table-admin">
+            <p>@res.ID</p>
+            <p>@res.name</p>
+            <a asp-controller="Admin" asp-action="EditResturant" asp-route-id="@res.ID">Edit</a>
+            <a asp-controller="Admin" asp-action="DeleteResturant" asp-route-id="@res.ID">Delete</a>
+        </div>
+    }
+}

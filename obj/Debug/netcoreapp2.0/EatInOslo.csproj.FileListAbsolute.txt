@@ -1,0 +1,10 @@
+C:\Users\Pauma\Documents\Westerdals\semester4\DS4101 - Webutvikeling 2\MappeInnlevering 2\EatInOslo\bin\Debug\netcoreapp2.0\EatInOslo.deps.json
+C:\Users\Pauma\Documents\Westerdals\semester4\DS4101 - Webutvikeling 2\MappeInnlevering 2\EatInOslo\bin\Debug\netcoreapp2.0\EatInOslo.runtimeconfig.json
+C:\Users\Pauma\Documents\Westerdals\semester4\DS4101 - Webutvikeling 2\MappeInnlevering 2\EatInOslo\bin\Debug\netcoreapp2.0\EatInOslo.runtimeconfig.dev.json
+C:\Users\Pauma\Documents\Westerdals\semester4\DS4101 - Webutvikeling 2\MappeInnlevering 2\EatInOslo\bin\Debug\netcoreapp2.0\EatInOslo.dll
+C:\Users\Pauma\Documents\Westerdals\semester4\DS4101 - Webutvikeling 2\MappeInnlevering 2\EatInOslo\bin\Debug\netcoreapp2.0\EatInOslo.pdb
+C:\Users\Pauma\Documents\Westerdals\semester4\DS4101 - Webutvikeling 2\MappeInnlevering 2\EatInOslo\obj\Debug\netcoreapp2.0\EatInOslo.csproj.CoreCompileInputs.cache
+C:\Users\Pauma\Documents\Westerdals\semester4\DS4101 - Webutvikeling 2\MappeInnlevering 2\EatInOslo\obj\Debug\netcoreapp2.0\EatInOslo.AssemblyInfoInputs.cache
+C:\Users\Pauma\Documents\Westerdals\semester4\DS4101 - Webutvikeling 2\MappeInnlevering 2\EatInOslo\obj\Debug\netcoreapp2.0\EatInOslo.AssemblyInfo.cs
+C:\Users\Pauma\Documents\Westerdals\semester4\DS4101 - Webutvikeling 2\MappeInnlevering 2\EatInOslo\obj\Debug\netcoreapp2.0\EatInOslo.dll
+C:\Users\Pauma\Documents\Westerdals\semester4\DS4101 - Webutvikeling 2\MappeInnlevering 2\EatInOslo\obj\Debug\netcoreapp2.0\EatInOslo.pdb

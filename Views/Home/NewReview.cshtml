@@ -1,0 +1,13 @@
+@model Review
+
+<form asp-action="NewReview">
+    <input type="hidden" asp-for="ResturantID" value=@ViewData["resturantid"]>
+    Title
+    <input asp-for="title" type="text">
+    <span asp-validation-for="title" class="validation-error"></span>
+    Text
+    <input asp-for="text" type="text">
+    <span asp-validation-for="text" class="validation-error"></span>
+
+    <input type="submit" value="Add Review">
+</form>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin || @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/admin.css">
+</head>
+<body>
+    <header>
+        <a asp-controller="Admin" asp-action="Index">Admin</a>
+        <a asp-controller="Admin" asp-action="NewResturant">+Resturant</a>
+        <a asp-controller="Admin" asp-action="Resturants">Resturants</a>
+        <a asp-controller="Admin" asp-action="Reviews">Reviews</a>
+        <a asp-controller="Admin" asp-action="Index">Admin</a>
+    </header>
+    @RenderBody()
+</body>
+</html>

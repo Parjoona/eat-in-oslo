@@ -1,0 +1,12 @@
+@model Review
+
+<form asp-action="EditReview">
+    <input type="hidden" asp-for="ResturantID">
+    Name
+    <input asp-for="title" type="text">
+    Text
+    <input asp-for="text" type="text">
+    UserID
+    <input asp-for="UserID" type="number">
+    <input type="submit" value="Update Review">
+</form>

@@ -1,0 +1,16 @@
+@{
+    if (ViewData["adminlogin"] != null)
+    {
+        <p>Already logged in</p>
+    } else {
+        <form asp-action="Index" asp-controller="Admin">
+            Username:
+            <input type="text" name="name">
+            Password:
+            <input type="password" name="password">
+            <input type="submit" value="Login">
+        </form>
+    }
+}
+
+<p>password hint: Admin Admin</p>

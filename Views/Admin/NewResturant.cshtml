@@ -1,0 +1,12 @@
+@model Resturant
+
+<form asp-controller="Admin" asp-action="NewResturant" enctype="multipart/form-data">
+    Name
+    <input asp-for="name" type="text">
+    Type
+    <input asp-for="type" type="text">
+    Description
+    <input asp-for="description" type="text">
+    <input type="file" name="file" accept="image/*">
+    <input type="submit" value="Add Resturant">
+</form>

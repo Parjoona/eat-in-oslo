@@ -1,0 +1,8 @@
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Upload">
+    <input type="hidden" name="ResturantID" value=@ViewData["resturantid"]>
+    <p>Upload one files using this form:</p>
+    <input type="file" name="file" accept="image/*">
+    <p>What is this picture of?</p>
+    <input type="text" name="description">
+    <input type="submit" value="Upload">
+</form>
