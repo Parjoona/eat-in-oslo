@@ -142,7 +142,7 @@ namespace EatInOslo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditResturant(int id, [Bind("ID, name, type, description")] Resturant resturant)
+        public async Task<IActionResult> EditResturant(int id, [Bind("ID, name, type, description, imgurl")] Resturant resturant)
         {
             try {
                 _context.Resturant.Update(resturant);

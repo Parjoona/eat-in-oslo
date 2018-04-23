@@ -1,7 +1,7 @@
 @{
     if (ViewData["login"] != null)
     {
-        <p>Already logged in as @ViewData["login"]</p>
+        <p>Already logged in as @ViewData["login"] - <a asp-controller="Home" asp-action="Logout">Logout</a></p>
     } else {
         <div class="form-container">
             <form asp-action="Login" asp-controller="Home">

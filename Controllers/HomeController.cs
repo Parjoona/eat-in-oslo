@@ -51,7 +51,7 @@ namespace EatInOslo.Controllers
                     .Include("Image")
                     .SingleOrDefaultAsync(r => r.ID == id));
             } 
-                catch (Exception ex) 
+                catch (Exception ex)
             {
                 return View(ex);
             }
@@ -91,7 +91,7 @@ namespace EatInOslo.Controllers
         }
 
         // #######################################
-        //               LOGIN/Guest
+        //               LOGIN/Guest (logout)
         // #######################################
 
         [HttpGet]
@@ -140,6 +140,13 @@ namespace EatInOslo.Controllers
             } else {
                 return View(user);
             }
+        }
+
+        [HttpGet]
+        public IActionResult Logout() 
+        {
+            HttpContext.Session.Remove("login");
+            return RedirectToAction(nameof(Index));
         }
 
         // #######################################

@@ -30,11 +30,10 @@ header a {
     text-align: center;
     color: #000;
     transition: 200ms;
-    border: 1px solid transparent;
 }
 
 header a:hover {
-    border-bottom: 1px solid purple;
+    color: purple;
 }
 
 .resturants-btn {
