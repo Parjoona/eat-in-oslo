@@ -1,9 +1,14 @@
+@model User
+
 <div class="form-container">
     <form asp-action="CreateLogin" asp-controller="Home">
         <h1>CREATE</h1>
-        <input type="text" name="name" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
-        <input type="email" name="email" placeholder="Email">
+        <input type="text" asp-for="name" placeholder="Username">
+            <span asp-validation-for="name" class="validation-error"></span>
+        <input type="password" asp-for="password" placeholder="Password">
+            <span asp-validation-for="password" class="validation-error"></span>
+        <input type="email" asp-for="email" placeholder="Email">
+            <span asp-validation-for="email" class="validation-error"></span>
         <input type="submit" value="Sign Up">
     </form>
 </div>

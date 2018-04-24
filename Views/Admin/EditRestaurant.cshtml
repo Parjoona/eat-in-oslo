@@ -3,11 +3,13 @@
 <form asp-action="EditRestaurant" enctype="multipart/form-data">
     Name
     <input asp-for="name" type="text">
+        <span asp-validation-for="name" class="validation-error"></span>
     Type
     <input asp-for="type" type="text">
-    Description
+        <span asp-validation-for="type" class="validation-error"></span>
     <input type="hidden" asp-for="imgurl">
     <input type="file" name="file">
-    <input asp-for="description" type="text">
+    <input asp-for="description" type="text" placeholder="Description">
+        <span asp-validation-for="description" class="validation-error"></span>
     <input type="submit" value="Edit Restaurant">
 </form>

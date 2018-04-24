@@ -3,10 +3,13 @@
 <form asp-controller="Admin" asp-action="NewRestaurant" enctype="multipart/form-data">
     Name
     <input asp-for="name" type="text">
+    <span asp-validation-for="name" class="validation-error"></span>
     Type
     <input asp-for="type" type="text">
+    <span asp-validation-for="type" class="validation-error"></span>
     Description
     <input asp-for="description" type="text">
+    <span asp-validation-for="description" class="validation-error"></span>
     <input type="file" name="file" accept="image/*">
     <input type="submit" value="Add Restaurant">
 </form>

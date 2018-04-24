@@ -1,8 +1,11 @@
+@model Image
+
 <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Upload">
     <input type="hidden" name="RestaurantID" value=@ViewData["restaurantid"]>
     <p>Upload one files using this form:</p>
     <input type="file" name="file" accept="image/*">
     <p>What is this picture of?</p>
     <input type="text" name="description">
+    <span asp-validation-for="description" class="validation-error"></span>
     <input type="submit" value="Upload">
 </form>

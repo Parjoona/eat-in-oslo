@@ -10,6 +10,9 @@ namespace EatInOslo.Models
         [Key]
         public int ID { get; set; }
         public string imgurl { get; set; }
+
+        [StringLength(200, MinimumLength=3, ErrorMessage="A description needs 200-3 letters")]
+        [Required]
         public string description { get; set; }
 
         [ForeignKey("RestaurantID")]

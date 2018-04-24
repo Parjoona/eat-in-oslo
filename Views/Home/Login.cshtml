@@ -1,3 +1,5 @@
+@model User
+
 @{
     if (ViewData["login"] != null)
     {
@@ -6,8 +8,10 @@
         <div class="form-container">
             <form asp-action="Login" asp-controller="Home">
                 <h1>&#x1f512;</h1>
-                <input type="text" name="name" placeholder="Username">
+                <input type="text" asp-for="name" placeholder="Username">
+                <span asp-validation-for="name" class="validation-error"></span>
                 <input type="password" name="password" placeholder="Password">
+                <span asp-validation-for="password" class="validation-error"></span>
                 <input type="submit" value="Login">
                 <a class="login-create" asp-controller="Home" asp-action="CreateLogin">Create new login</a>
             </form>

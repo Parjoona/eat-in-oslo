@@ -104,19 +104,24 @@ namespace EatInOslo.Controllers
         [HttpPost]
         public async Task<IActionResult> Index([Bind("name, password")] User user)
         {
-            try {
-                List<User> us = await _context.User.Where(i => i.name == user.name).ToListAsync();
+            if (ModelState.IsValid)
+            {
+                try {
+                    List<User> us = await _context.User.Where(i => i.name == user.name).ToListAsync();
 
-                if (us[0].name == "Admin" && us[0].password == user.password)
-                {
-                    HttpContext.Session.SetString("adminlogin", user.name);
-                    return RedirectToAction(nameof(Admin));
+                    if (us[0].name == "Admin" && us[0].password == user.password)
+                    {
+                        HttpContext.Session.SetString("adminlogin", user.name);
+                        return RedirectToAction(nameof(Admin));
+                    }
+
+                    return View();
+
+                } catch (Exception e) {
+                    return View(e);
                 }
-
-                return View();
-
-            } catch (Exception e) {
-                 return View(e);
+            } else {
+                return View(user);
             }
         }
 
@@ -144,23 +149,28 @@ namespace EatInOslo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditRestaurant(int id, IFormFile file, [Bind("ID, name, type, description, imgurl")] Restaurant restaurant)
         {
-            try {
-                if (file != null) 
-                {
-                    restaurant.imgurl = file.FileName;
-
-                    string path = _env.WebRootPath + "\\image\\Restaurants\\" + file.FileName;
-                    using (var stream = new FileStream(path, FileMode.Create))
+            if (ModelState.IsValid)
+            {
+                try {
+                    if (file != null) 
                     {
-                        await file.CopyToAsync(stream);
-                    }
-                }
+                        restaurant.imgurl = file.FileName;
 
-                _context.Restaurant.Update(restaurant);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Admin));
-            } catch (Exception e) {
-                return View(e);
+                        string path = _env.WebRootPath + "\\image\\Restaurants\\" + file.FileName;
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+                    }
+
+                    _context.Restaurant.Update(restaurant);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Admin));
+                } catch (Exception e) {
+                    return View(e);
+                }
+            } else {
+                return View(restaurant);
             }
         }
 
@@ -218,25 +228,30 @@ namespace EatInOslo.Controllers
         // Save Restaurant with Image upload
         [HttpPost]
         public async Task<IActionResult> NewRestaurant(IFormFile file, [Bind("ID,name,type,description,imgurl")] Restaurant restaurant) 
-        { 
-            if (file == null || file.Length == 0)
+        {
+            if (ModelState.IsValid)
             {
-                return Content("file not selected");
-            }
-
-            try {
-                string path = _env.WebRootPath + "\\image\\Restaurants\\" + file.FileName;
-                using (var stream = new FileStream(path, FileMode.Create))
+                if (file == null || file.Length == 0)
                 {
-                    await file.CopyToAsync(stream);
+                    return Content("file not selected");
                 }
 
-                restaurant.imgurl = file.FileName;
-                _context.Restaurant.Add(restaurant);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Admin));
-            } catch (Exception e) {
-                return View(e);
+                try {
+                    string path = _env.WebRootPath + "\\image\\Restaurants\\" + file.FileName;
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+
+                    restaurant.imgurl = file.FileName;
+                    _context.Restaurant.Add(restaurant);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Admin));
+                } catch (Exception e) {
+                    return View(e);
+                }
+            } else {
+                return View(restaurant);
             }
         }
 
@@ -253,7 +268,7 @@ namespace EatInOslo.Controllers
             }
 
             try {
-                return View(await _context.Review.SingleOrDefaultAsync(r => r.ID == id));
+                return View(await _context.Review.Include("User").SingleOrDefaultAsync(r => r.ID == id));
             } catch (Exception e) {
                 return View(e);
             }
@@ -264,9 +279,22 @@ namespace EatInOslo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditReview(int id, [Bind("ID, text, title, UserID, RestaurantID")] Review review)
         {
-            _context.Review.Update(review);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Admin));
+            if (ModelState.IsValid)
+            {
+                try 
+                {
+                    _context.Review.Update(review);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Admin));
+                } 
+                    catch (Exception ex)
+                {
+                    return View(ex);
+                }
+
+            } else {
+                return View(review);
+            }
         }
 
         // #######################################

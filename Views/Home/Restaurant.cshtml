@@ -5,7 +5,7 @@
         <h2>@Model.name</h2>
         <h3>@Model.type</h3>
         <p>@Model.description</p>
-        @{
+    @{
         if (ViewData["login"] != null) {
             <a asp-controller="Home" asp-action="NewReview" asp-route-RestaurantID="@Model.ID">+Review</a>
             <a asp-controller="Home" asp-action="Upload" asp-route-RestaurantID="@Model.ID">+Image</a>
@@ -15,10 +15,8 @@
             <p>Create reviews</p>
             <a asp-action="Login" asp-controller="Home">Login Here</a>
         }
-        }
+    }
     </div>
-  
-
 
     <div class="review-container">
         @foreach (Review review in Model.Review)

@@ -4,8 +4,10 @@
     <input type="hidden" asp-for="RestaurantID">
     Name
     <input asp-for="title" type="text">
+        <span asp-validation-for="title" class="validation-error"></span>
     Text
     <input asp-for="text" type="text">
+        <span asp-validation-for="text" class="validation-error"></span>
     UserID
     <input asp-for="UserID" type="number">
     <input type="submit" value="Update Review">

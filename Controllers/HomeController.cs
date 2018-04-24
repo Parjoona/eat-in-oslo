@@ -27,6 +27,7 @@ namespace EatInOslo.Controllers
         //             ROUTING
         // #######################################
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             try 
@@ -104,19 +105,24 @@ namespace EatInOslo.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([Bind("name, password")] User user)
         {
-            try {
-                List<User> guest = await _context.User.Where(i => i.name == user.name).ToListAsync();
+            if (ModelState.IsValid)
+            {
+                try {
+                    List<User> guest = await _context.User.Where(i => i.name == user.name).ToListAsync();
 
-                if (guest[0].name == user.name && guest[0].password == user.password)
-                {
-                    HttpContext.Session.SetString("login", user.name);
-                    return RedirectToAction(nameof(Index));
+                    if (guest[0].name == user.name && guest[0].password == user.password)
+                    {
+                        HttpContext.Session.SetString("login", user.name);
+                        return RedirectToAction(nameof(Index));
+                    }
+
+                    return View(user);
+
+                } catch (Exception e) {
+                    return View(e);
                 }
-
+            } else {
                 return View(user);
-
-            } catch (Exception e) {
-                 return View(e);
             }
         }
 
@@ -163,24 +169,29 @@ namespace EatInOslo.Controllers
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file, [Bind("ID, imgurl, RestaurantID")] Image image)
         {
-            if (file == null || file.Length == 0)
+            if (ModelState.IsValid)
             {
-                return Content("file not selected");
-            }
-            try {
-                string path = _env.WebRootPath + "\\image\\uploads\\" + file.FileName;
-                using (var stream = new FileStream(path, FileMode.Create))
+                if (file == null || file.Length == 0)
                 {
-                    await file.CopyToAsync(stream);
+                    return Content("file not selected");
                 }
+                try {
+                    string path = _env.WebRootPath + "\\image\\uploads\\" + file.FileName;
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
 
-                image.imgurl = file.FileName;
-                _context.Image.Add(image);
-                await _context.SaveChangesAsync();
-                
-                return RedirectToAction(nameof(Index));
-            } catch (Exception e) {
-                return View(e);
+                    image.imgurl = file.FileName;
+                    _context.Image.Add(image);
+                    await _context.SaveChangesAsync();
+                    
+                    return RedirectToAction(nameof(Index));
+                } catch (Exception e) {
+                    return View(e);
+                }
+            } else {
+                return View(image);
             }
         }
     }
