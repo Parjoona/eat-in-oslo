@@ -142,9 +142,20 @@ namespace EatInOslo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditResturant(int id, [Bind("ID, name, type, description, imgurl")] Resturant resturant)
+        public async Task<IActionResult> EditResturant(int id, IFormFile file, [Bind("ID, name, type, description, imgurl")] Resturant resturant)
         {
             try {
+                if (file != null) 
+                {
+                    resturant.imgurl = file.FileName;
+
+                    string path = _env.WebRootPath + "\\image\\resturants\\" + file.FileName;
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+                }
+
                 _context.Resturant.Update(resturant);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Admin));

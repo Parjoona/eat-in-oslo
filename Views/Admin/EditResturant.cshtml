@@ -1,12 +1,13 @@
 @model Resturant
 
-<form asp-action="EditResturant">
+<form asp-action="EditResturant" enctype="multipart/form-data">
     Name
     <input asp-for="name" type="text">
     Type
     <input asp-for="type" type="text">
     Description
     <input type="hidden" asp-for="imgurl">
+    <input type="file" name="file">
     <input asp-for="description" type="text">
     <input type="submit" value="Edit Resturant">
 </form>
