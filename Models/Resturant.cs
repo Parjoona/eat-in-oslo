@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EatInOslo.Models
 {
-    public class Resturant
+    public class Restaurant
     {
         [Key]
         public int ID { get; set; }

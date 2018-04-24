@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace EatInOslo.Migrations
 {
-    public partial class ICreate : Migration
+    public partial class IC : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Resturant",
+                name: "Restaurant",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
@@ -21,7 +21,7 @@ namespace EatInOslo.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Resturant", x => x.ID);
+                    table.PrimaryKey("PK_Restaurant", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,7 +45,7 @@ namespace EatInOslo.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ResturantID = table.Column<int>(nullable: true),
+                    RestaurantID = table.Column<int>(nullable: true),
                     description = table.Column<string>(nullable: true),
                     imgurl = table.Column<string>(nullable: true)
                 },
@@ -53,9 +53,9 @@ namespace EatInOslo.Migrations
                 {
                     table.PrimaryKey("PK_Image", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Image_Resturant_ResturantID",
-                        column: x => x.ResturantID,
-                        principalTable: "Resturant",
+                        name: "FK_Image_Restaurant_RestaurantID",
+                        column: x => x.RestaurantID,
+                        principalTable: "Restaurant",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -66,7 +66,7 @@ namespace EatInOslo.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ResturantID = table.Column<int>(nullable: true),
+                    RestaurantID = table.Column<int>(nullable: true),
                     UserID = table.Column<int>(nullable: true),
                     text = table.Column<string>(nullable: true),
                     title = table.Column<string>(nullable: false)
@@ -75,9 +75,9 @@ namespace EatInOslo.Migrations
                 {
                     table.PrimaryKey("PK_Review", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Review_Resturant_ResturantID",
-                        column: x => x.ResturantID,
-                        principalTable: "Resturant",
+                        name: "FK_Review_Restaurant_RestaurantID",
+                        column: x => x.RestaurantID,
+                        principalTable: "Restaurant",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -89,14 +89,14 @@ namespace EatInOslo.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Image_ResturantID",
+                name: "IX_Image_RestaurantID",
                 table: "Image",
-                column: "ResturantID");
+                column: "RestaurantID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Review_ResturantID",
+                name: "IX_Review_RestaurantID",
                 table: "Review",
-                column: "ResturantID");
+                column: "RestaurantID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Review_UserID",
@@ -113,7 +113,7 @@ namespace EatInOslo.Migrations
                 name: "Review");
 
             migrationBuilder.DropTable(
-                name: "Resturant");
+                name: "Restaurant");
 
             migrationBuilder.DropTable(
                 name: "User");

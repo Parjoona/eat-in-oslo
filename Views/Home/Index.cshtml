@@ -1,4 +1,4 @@
-@model IEnumerable<Resturant>
+@model IEnumerable<Restaurant>
 
 <div class="intro">
     <h2>Resturants near you</h2>
@@ -6,11 +6,11 @@
 </div>
 
 <div class="container">
-    @foreach (Resturant r in Model)
+    @foreach (Restaurant r in Model)
     {
-        <a asp-controller="Home" asp-action="Resturant" asp-route-id="@r.ID">
+        <a asp-controller="Home" asp-action="Restaurant" asp-route-id="@r.ID">
             <div class="product">
-                <img src="~/image/resturants/@r.imgurl" alt="resturant">
+                <img src="~/image/restaurants/@r.imgurl" alt="restaurant">
                 <h3 class="product-title">@r.name</h3>
             </div>
         </a>

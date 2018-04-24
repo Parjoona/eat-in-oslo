@@ -31,7 +31,7 @@ namespace EatInOslo.Controllers
         {
             try 
             {
-                return View(await _context.Resturant.ToListAsync());
+                return View(await _context.Restaurant.ToListAsync());
             } 
                 catch (Exception ex) 
             {
@@ -40,13 +40,13 @@ namespace EatInOslo.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Resturant(int? id) 
+        public async Task<IActionResult> Restaurant(int? id) 
         {
             ViewData["login"] = HttpContext.Session.GetString("login");
 
             try
             {
-                return View(await _context.Resturant
+                return View(await _context.Restaurant
                     .Include("Review")
                     .Include("Image")
                     .SingleOrDefaultAsync(r => r.ID == id));
@@ -62,14 +62,14 @@ namespace EatInOslo.Controllers
         // #######################################
 
         [HttpGet]
-        public IActionResult NewReview(int? ResturantID)
+        public IActionResult NewReview(int? RestaurantID)
         {
-            ViewData["resturantid"] = ResturantID;
+            ViewData["Restaurantid"] = RestaurantID;
             return View();
         }
         
         [HttpPost]
-        public async Task<IActionResult> NewReview([Bind("ID, ResturantID, title, text, stars")] Review review)
+        public async Task<IActionResult> NewReview([Bind("ID, RestaurantID, title, text, stars")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace EatInOslo.Controllers
 
                     _context.Review.Add(review);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Restaurant", new { id = review.RestaurantID });
                 } catch (Exception e) {
                     return View(e);
                 }
@@ -154,14 +154,14 @@ namespace EatInOslo.Controllers
         // #######################################
 
         [HttpGet]
-        public IActionResult Upload(int? ResturantID)
+        public IActionResult Upload(int? RestaurantID)
         {   
-            ViewData["resturantID"] = ResturantID;
+            ViewData["RestaurantID"] = RestaurantID;
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload(IFormFile file, [Bind("ID, imgurl, ResturantID")] Image image)
+        public async Task<IActionResult> Upload(IFormFile file, [Bind("ID, imgurl, RestaurantID")] Image image)
         {
             if (file == null || file.Length == 0)
             {

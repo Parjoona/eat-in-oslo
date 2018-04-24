@@ -10,8 +10,8 @@ using System;
 namespace EatInOslo.Migrations
 {
     [DbContext(typeof(EatInOsloContext))]
-    [Migration("20180420204905_ICreate")]
-    partial class ICreate
+    [Migration("20180424192934_IC")]
+    partial class IC
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace EatInOslo.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ResturantID");
+                    b.Property<int?>("RestaurantID");
 
                     b.Property<string>("description");
 
@@ -32,12 +32,12 @@ namespace EatInOslo.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ResturantID");
+                    b.HasIndex("RestaurantID");
 
                     b.ToTable("Image");
                 });
 
-            modelBuilder.Entity("EatInOslo.Models.Resturant", b =>
+            modelBuilder.Entity("EatInOslo.Models.Restaurant", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
@@ -52,7 +52,7 @@ namespace EatInOslo.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Resturant");
+                    b.ToTable("Restaurant");
                 });
 
             modelBuilder.Entity("EatInOslo.Models.Review", b =>
@@ -60,7 +60,7 @@ namespace EatInOslo.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ResturantID");
+                    b.Property<int?>("RestaurantID");
 
                     b.Property<int?>("UserID");
 
@@ -71,7 +71,7 @@ namespace EatInOslo.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ResturantID");
+                    b.HasIndex("RestaurantID");
 
                     b.HasIndex("UserID");
 
@@ -96,16 +96,16 @@ namespace EatInOslo.Migrations
 
             modelBuilder.Entity("EatInOslo.Models.Image", b =>
                 {
-                    b.HasOne("EatInOslo.Models.Resturant", "Resturant")
+                    b.HasOne("EatInOslo.Models.Restaurant", "Restaurant")
                         .WithMany("Image")
-                        .HasForeignKey("ResturantID");
+                        .HasForeignKey("RestaurantID");
                 });
 
             modelBuilder.Entity("EatInOslo.Models.Review", b =>
                 {
-                    b.HasOne("EatInOslo.Models.Resturant", "Resturant")
+                    b.HasOne("EatInOslo.Models.Restaurant", "Restaurant")
                         .WithMany("Review")
-                        .HasForeignKey("ResturantID");
+                        .HasForeignKey("RestaurantID");
 
                     b.HasOne("EatInOslo.Models.User", "User")
                         .WithMany("Review")

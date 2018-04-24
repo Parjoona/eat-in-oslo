@@ -13,9 +13,9 @@ namespace EatInOslo.Models
         public string title { get; set; }
         public string text { get; set; }
 
-        [ForeignKey("ResturantID")]
-        public int? ResturantID { get; set; }
-        public virtual Resturant Resturant { get; set; }
+        [ForeignKey("RestaurantID")]
+        public int? RestaurantID { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
 
         [ForeignKey("UserID")]
         public int? UserID { get; set; }

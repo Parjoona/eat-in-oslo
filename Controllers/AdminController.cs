@@ -57,7 +57,7 @@ namespace EatInOslo.Controllers
             }
 
             try {
-                return View(await _context.Resturant
+                return View(await _context.Restaurant
                     .Include("Review")
                     .ToListAsync());
 
@@ -67,7 +67,7 @@ namespace EatInOslo.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Resturants()
+        public async Task<IActionResult> Restaurants()
         {
             if (HttpContext.Session.GetString("adminlogin") != "Admin") 
             {
@@ -75,7 +75,7 @@ namespace EatInOslo.Controllers
             }
 
             try {
-                return View(await _context.Resturant.ToListAsync());
+                return View(await _context.Restaurant.ToListAsync());
             } catch (Exception e) {
                 return View(e);
             }
@@ -121,11 +121,11 @@ namespace EatInOslo.Controllers
         }
 
         // #######################################
-        //              EDIT/Resturant 
+        //              EDIT/Restaurant 
         // #######################################
 
         [HttpGet]
-        public async Task<IActionResult> EditResturant(int? id)
+        public async Task<IActionResult> EditRestaurant(int? id)
         {
             if (HttpContext.Session.GetString("adminlogin") != "Admin") 
             {
@@ -133,7 +133,7 @@ namespace EatInOslo.Controllers
             }
 
             try {
-                return View(await _context.Resturant
+                return View(await _context.Restaurant
                     .SingleOrDefaultAsync(r => r.ID == id));
             } catch (Exception e) {
                 return View(e);
@@ -142,21 +142,21 @@ namespace EatInOslo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditResturant(int id, IFormFile file, [Bind("ID, name, type, description, imgurl")] Resturant resturant)
+        public async Task<IActionResult> EditRestaurant(int id, IFormFile file, [Bind("ID, name, type, description, imgurl")] Restaurant restaurant)
         {
             try {
                 if (file != null) 
                 {
-                    resturant.imgurl = file.FileName;
+                    restaurant.imgurl = file.FileName;
 
-                    string path = _env.WebRootPath + "\\image\\resturants\\" + file.FileName;
+                    string path = _env.WebRootPath + "\\image\\Restaurants\\" + file.FileName;
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
                         await file.CopyToAsync(stream);
                     }
                 }
 
-                _context.Resturant.Update(resturant);
+                _context.Restaurant.Update(restaurant);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Admin));
             } catch (Exception e) {
@@ -165,32 +165,32 @@ namespace EatInOslo.Controllers
         }
 
         // #######################################
-        //             DELETE/Resturant
+        //             DELETE/Restaurant
         // #######################################
 
         [HttpGet]
-        public async Task<IActionResult> DeleteResturant(int? id)
+        public async Task<IActionResult> DeleteRestaurant(int? id)
         {
             if (HttpContext.Session.GetString("adminlogin") != "Admin") 
             {
                 return RedirectToAction(nameof(Index));
             }
             try {
-                return View(await _context.Resturant
+                return View(await _context.Restaurant
                     .SingleOrDefaultAsync(r => r.ID == id));
             } catch (Exception e) {
                 return View(e);
             }
         }
 
-        [HttpPost, ActionName("ConfirmDeleteResturant")]
+        [HttpPost, ActionName("ConfirmDeleteRestaurant")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ConfirmDeleteResturant(int id)
+        public async Task<IActionResult> ConfirmDeleteRestaurant(int id)
         {
-            _context.Resturant.Remove(await _context.Resturant
+            _context.Restaurant.Remove(await _context.Restaurant
                 .SingleOrDefaultAsync(c => c.ID == id));
 
-            var rev = await _context.Review.Where(_review => _review.ResturantID == id).ToListAsync();
+            var rev = await _context.Review.Where(_review => _review.RestaurantID == id).ToListAsync();
             foreach (var r in rev)
             {
                  _context.Review.Remove(r);
@@ -201,11 +201,11 @@ namespace EatInOslo.Controllers
         }
 
         // #######################################
-        //             CREATE/Resturant
+        //             CREATE/Restaurant
         // #######################################
 
         [HttpGet]
-        public IActionResult NewResturant()
+        public IActionResult NewRestaurant()
         {
             if (HttpContext.Session.GetString("adminlogin") != "Admin") 
             {
@@ -215,9 +215,9 @@ namespace EatInOslo.Controllers
             return View();
         }
 
-        // Save resturant with Image upload
+        // Save Restaurant with Image upload
         [HttpPost]
-        public async Task<IActionResult> NewResturant(IFormFile file, [Bind("ID,name,type,description,imgurl")] Resturant resturant) 
+        public async Task<IActionResult> NewRestaurant(IFormFile file, [Bind("ID,name,type,description,imgurl")] Restaurant restaurant) 
         { 
             if (file == null || file.Length == 0)
             {
@@ -225,14 +225,14 @@ namespace EatInOslo.Controllers
             }
 
             try {
-                string path = _env.WebRootPath + "\\image\\resturants\\" + file.FileName;
+                string path = _env.WebRootPath + "\\image\\Restaurants\\" + file.FileName;
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
 
-                resturant.imgurl = file.FileName;
-                _context.Resturant.Add(resturant);
+                restaurant.imgurl = file.FileName;
+                _context.Restaurant.Add(restaurant);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Admin));
             } catch (Exception e) {
@@ -262,7 +262,7 @@ namespace EatInOslo.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditReview(int id, [Bind("ID, text, title, UserID, ResturantID")] Review review)
+        public async Task<IActionResult> EditReview(int id, [Bind("ID, text, title, UserID, RestaurantID")] Review review)
         {
             _context.Review.Update(review);
             await _context.SaveChangesAsync();

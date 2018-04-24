@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://rsms.me/inter/inter-ui.css');
 
 body, html {
     font-family: 'Roboto', sans-serif;
@@ -68,11 +67,10 @@ footer a {
     text-align: center;
     color: #000;
     padding: 5px 0;
-    border: 1px solid transparent;
 }
 
 footer a:hover {
-    border-bottom: 1px solid #000;
+    color: purple;
 }
 
 .fb-btn {
@@ -219,4 +217,37 @@ input[type="submit"] {
     height: 40px;
     width: 40px;
     background: red;
+}
+
+.restaurant-container {
+    display: grid;
+    grid-template-areas:
+    "pic pic restaurant reviews"
+    "pic pic restaurant reviews"
+    "images images images images";
+}
+
+.restaurant-information {
+    text-align: left;
+    grid-area: restaurant;
+}
+
+.review-container {
+    text-align: right;
+    grid-area: reviews;
+}
+
+.image-container {
+    margin-top: 25px; 
+    grid-area: images;
+    height: 150px;
+    overflow: scroll;
+}
+
+.image-container img {
+    height: 150px;
+}
+
+.restaurant-picture {
+    grid-area: pic;
 }

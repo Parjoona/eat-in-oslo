@@ -22,7 +22,7 @@ header {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-areas: 
-    "home . . resturants reviews . plus . back back";
+    "home . . restaurants reviews . plus . back back";
 }
  
 header a {
@@ -36,15 +36,15 @@ header a:hover {
     color: purple;
 }
 
-.resturants-btn {
-    grid-area: resturants;
+.restaurants-btn {
+    grid-area: restaurants;
 }
 
 .reviews-btn {
     grid-area: reviews;
 }
 
-.plus-resturant-btn {
+.plus-restaurant-btn {
     grid-area: plus;
 }
 

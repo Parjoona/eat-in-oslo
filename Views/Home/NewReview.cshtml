@@ -1,7 +1,7 @@
 @model Review
 
 <form asp-action="NewReview">
-    <input type="hidden" asp-for="ResturantID" value=@ViewData["resturantid"]>
+    <input type="hidden" asp-for="RestaurantID" value=@ViewData["restaurantid"]>
     Title
     <input asp-for="title" type="text">
     <span asp-validation-for="title" class="validation-error"></span>
