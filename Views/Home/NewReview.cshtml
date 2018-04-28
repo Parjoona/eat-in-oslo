@@ -1,5 +1,10 @@
 @model Review
 
+@{
+    ViewData["Title"] = "New Review";
+}
+
+
 <form asp-action="NewReview">
     <input type="hidden" asp-for="RestaurantID" value=@ViewData["restaurantid"]>
     Title

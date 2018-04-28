@@ -1,20 +1,18 @@
 @model IEnumerable<Restaurant>
-
-<div class="table-admin">
-    <p>ID</p>
-    <p>Name</p>
-    <p>EDIT</p>
-    <p>DELETE</p>
-</div>
-
 @{
-    foreach (Restaurant res in Model)
+    ViewData["Title"] = "Restaurants";
+}
+
+<div class="box-container">
+    @foreach (Restaurant res in Model)
     {
         <div class="table-admin">
+            <p>ID</p>
+            <p>Name</p>
             <p>@res.ID</p>
             <p>@res.name</p>
             <a asp-controller="Admin" asp-action="EditRestaurant" asp-route-id="@res.ID">Edit</a>
             <a asp-controller="Admin" asp-action="DeleteRestaurant" asp-route-id="@res.ID">Delete</a>
         </div>
     }
-}
+</div>

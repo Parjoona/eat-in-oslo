@@ -1,22 +1,21 @@
 @model IEnumerable<Review>
+@{
+    ViewData["Title"] = "Reviews";
+}
 
 <h1>REVIEWS</h1>
-
-<div class="table-admin">
-    <p>ID</p>
-    <p>Title</p>
-    <p>EDIT</p>
-    <p>DELETE</p>
-</div>
-
-@{
-    foreach (Review rew in Model)
+<div class="box-container">
+    @foreach (Review rew in Model)
     {
         <div class="table-admin">
+            <p>ID</p>
+            <p>Title</p>
             <p>@rew.ID</p>
             <p>@rew.title</p>
             <a asp-controller="Admin" asp-action="EditReview" asp-route-id="@rew.ID">Edit</a>
             <a asp-controller="Admin" asp-action="DeleteReview" asp-route-id="@rew.ID">Delete</a>
+            <p>Restaurant:</p>
+            <p>@rew.Restaurant.name</p>
         </div>
     }
-}
+</div>

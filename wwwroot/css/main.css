@@ -221,6 +221,7 @@ input[type="submit"] {
 
 .restaurant-container {
     display: grid;
+    grid-gap: 20px;
     grid-template-areas:
     "pic pic restaurant reviews"
     "pic pic restaurant reviews"
@@ -240,7 +241,7 @@ input[type="submit"] {
 .image-container {
     margin-top: 25px; 
     grid-area: images;
-    height: 150px;
+    height: 120px;
     overflow: scroll;
 }
 

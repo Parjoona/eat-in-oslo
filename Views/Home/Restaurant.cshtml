@@ -1,5 +1,10 @@
 @model Restaurant
 
+@{
+    ViewData["Title"] = @Model.name;
+}
+
+
 <div class="restaurant-container">
     <div class="restaurant-information">
         <h2>@Model.name</h2>

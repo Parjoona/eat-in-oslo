@@ -87,6 +87,7 @@ namespace EatInOslo.Controllers
                     return View(e);
                 }
             } else {
+                ViewData["Restaurantid"] = review.RestaurantID;
                 return View(review);
             }
         }
@@ -105,8 +106,7 @@ namespace EatInOslo.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([Bind("name, password")] User user)
         {
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
                 try {
                     List<User> guest = await _context.User.Where(i => i.name == user.name).ToListAsync();
 
@@ -122,6 +122,7 @@ namespace EatInOslo.Controllers
                     return View(e);
                 }
             } else {
+                ViewData["login"] = HttpContext.Session.GetString("login");
                 return View(user);
             }
         }
@@ -167,7 +168,7 @@ namespace EatInOslo.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload(IFormFile file, [Bind("ID, imgurl, RestaurantID")] Image image)
+        public async Task<IActionResult> Upload(int? RestaurantID, IFormFile file, [Bind("ID, imgurl, description, RestaurantID")] Image image)
         {
             if (ModelState.IsValid)
             {
@@ -191,6 +192,7 @@ namespace EatInOslo.Controllers
                     return View(e);
                 }
             } else {
+                ViewData["RestaurantID"] = RestaurantID;
                 return View(image);
             }
         }

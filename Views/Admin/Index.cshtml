@@ -1,21 +1,23 @@
 @model User
 
 @{
-    if (ViewData["adminlogin"] != null)
-    {
-        <p>Already logged in</p>
-    } else {
-        <div class="form-container">
-            <h1>&#x1f512;</h1>
-            <form asp-action="Index" asp-controller="Admin">
-                <input type="text" name="name" placeholder="Username">
-                    <span asp-validation-for="name" class="validation-error"></span>
-                <input type="password" name="password" placeholder="Password">
-                    <span asp-validation-for="password" class="validation-error"></span>
-                <input type="submit" value="Log In">
-            </form>
-        </div>
-    }
+    ViewData["Title"] = "Login";
+}
+
+@if (ViewData["adminlogin"] != null)
+{
+    <p>Already logged in</p>
+} else {
+    <div class="form-container">
+        <h1>&#x1f512;</h1>
+        <form asp-action="Index" asp-controller="Admin">
+            <input type="text" name="name" placeholder="Username">
+                <span asp-validation-for="name" class="validation-error"></span>
+            <input type="password" name="password" placeholder="Password">
+                <span asp-validation-for="password" class="validation-error"></span>
+            <input type="submit" value="Log In">
+        </form>
+    </div>
 }
 
 <p>password hint: Admin Admin</p>

@@ -90,7 +90,7 @@ namespace EatInOslo.Controllers
             }
 
             try {
-                return View(await _context.Review.ToListAsync());
+                return View(await _context.Review.Include("Restaurant").ToListAsync());
             } catch (Exception e) {
                 return View(e);
             }
@@ -104,24 +104,19 @@ namespace EatInOslo.Controllers
         [HttpPost]
         public async Task<IActionResult> Index([Bind("name, password")] User user)
         {
-            if (ModelState.IsValid)
-            {
-                try {
-                    List<User> us = await _context.User.Where(i => i.name == user.name).ToListAsync();
+            try {
+                List<User> us = await _context.User.Where(i => i.name == user.name).ToListAsync();
 
-                    if (us[0].name == "Admin" && us[0].password == user.password)
-                    {
-                        HttpContext.Session.SetString("adminlogin", user.name);
-                        return RedirectToAction(nameof(Admin));
-                    }
-
-                    return View();
-
-                } catch (Exception e) {
-                    return View(e);
+                if (us[0].name == "Admin" && us[0].password == user.password)
+                {
+                    HttpContext.Session.SetString("adminlogin", user.name);
+                    return RedirectToAction(nameof(Admin));
                 }
-            } else {
-                return View(user);
+
+                return View();
+
+            } catch (Exception e) {
+                return View(e);
             }
         }
 
@@ -165,7 +160,7 @@ namespace EatInOslo.Controllers
 
                     _context.Restaurant.Update(restaurant);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Admin));
+                    return RedirectToAction(nameof(Restaurants));
                 } catch (Exception e) {
                     return View(e);
                 }
@@ -207,7 +202,7 @@ namespace EatInOslo.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Admin));
+            return RedirectToAction(nameof(Restaurants));
         }
 
         // #######################################
@@ -246,7 +241,7 @@ namespace EatInOslo.Controllers
                     restaurant.imgurl = file.FileName;
                     _context.Restaurant.Add(restaurant);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Admin));
+                    return RedirectToAction(nameof(Restaurants));
                 } catch (Exception e) {
                     return View(e);
                 }
@@ -301,7 +296,7 @@ namespace EatInOslo.Controllers
         //             Delete/Review
         // #######################################
 
-        public async Task<IActionResult> RemoveReview(int? id)
+        public async Task<IActionResult> DeleteReview(int? id)
         {
             if (HttpContext.Session.GetString("adminlogin") != "Admin") 
             {

@@ -123,3 +123,25 @@ input[type="submit"] {
 .validation-error {
     margin-top: -40px;
 }
+
+.box-container {
+    display: grid;
+    grid: auto-flow / repeat(4, 1fr);
+    grid-gap: 25px;
+}
+
+.table-admin {
+    display: grid;
+    grid: repeat(4, 1fr) / repeat(2, 1fr);
+    border: 1px solid #000;
+    text-align: center;
+}
+
+.table-admin * {
+    margin: 5px;
+}
+
+.validation-error {
+    margin-top: -25px;
+    color: red;
+}

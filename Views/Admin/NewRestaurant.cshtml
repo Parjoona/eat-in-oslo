@@ -1,5 +1,9 @@
 @model Restaurant
 
+@{
+    ViewData["Title"] = "New Restaurant";
+}
+
 <form asp-controller="Admin" asp-action="NewRestaurant" enctype="multipart/form-data">
     Name
     <input asp-for="name" type="text">

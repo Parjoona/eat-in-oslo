@@ -1,5 +1,9 @@
 @model Restaurant
 
+@{
+    ViewData["Title"] = "Edit Restaurant";
+}
+
 <form asp-action="EditRestaurant" enctype="multipart/form-data">
     Name
     <input asp-for="name" type="text">
