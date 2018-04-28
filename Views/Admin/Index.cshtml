@@ -11,6 +11,7 @@
     <div class="form-container">
         <h1>&#x1f512;</h1>
         <form asp-action="Index" asp-controller="Admin">
+            <input type="hidden" asp-for="email" value="email@email.no">
             <input type="text" name="name" placeholder="Username">
                 <span asp-validation-for="name" class="validation-error"></span>
             <input type="password" name="password" placeholder="Password">
@@ -21,3 +22,4 @@
 }
 
 <p>password hint: Admin Admin</p>
+<p>Need to have Admin username in database.</p>

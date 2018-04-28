@@ -102,21 +102,25 @@ namespace EatInOslo.Controllers
 
         // Post request for admin login
         [HttpPost]
-        public async Task<IActionResult> Index([Bind("name, password")] User user)
+        public async Task<IActionResult> Index([Bind("name, password, email")] User user)
         {
-            try {
-                List<User> us = await _context.User.Where(i => i.name == user.name).ToListAsync();
+            if (ModelState.IsValid) {
+                try {
+                    User us = await _context.User.SingleOrDefaultAsync(u => u.name == "Admin" && u.password == user.password);
 
-                if (us[0].name == "Admin" && us[0].password == user.password)
-                {
-                    HttpContext.Session.SetString("adminlogin", user.name);
-                    return RedirectToAction(nameof(Admin));
+                    if (us != null)
+                    {
+                        HttpContext.Session.SetString("adminlogin", user.name);
+                        return RedirectToAction(nameof(Admin));
+                    } else {
+                        return View();
+                    }
+
+                } catch (Exception e) {
+                    return View(e);
                 }
-
+            } else {
                 return View();
-
-            } catch (Exception e) {
-                return View(e);
             }
         }
 

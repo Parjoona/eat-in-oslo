@@ -4,6 +4,7 @@
     ViewData["Title"] = "Login";
 }
 
+<p>@ViewData["testing"]</p>
 
 @if (ViewData["login"] != null)
 {
@@ -12,6 +13,7 @@
     <div class="form-container">
         <form asp-action="Login" asp-controller="Home">
             <h1>&#x1f512;</h1>
+            <input type="hidden" asp-for="email" value="email@email.no">
             <input type="text" asp-for="name" placeholder="Username">
             <span asp-validation-for="name" class="validation-error"></span>
             <input type="password" name="password" placeholder="Password">

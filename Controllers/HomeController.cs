@@ -104,21 +104,24 @@ namespace EatInOslo.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([Bind("name, password")] User user)
+        public async Task<IActionResult> Login([Bind("name, password, email")] User user)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 try {
-                    List<User> guest = await _context.User.Where(i => i.name == user.name).ToListAsync();
+                    User guest = await _context.User.SingleOrDefaultAsync(u => u.name == user.name && u.password == user.password);
 
-                    if (guest[0].name == user.name && guest[0].password == user.password)
+                    if (guest != null)
                     {
                         HttpContext.Session.SetString("login", user.name);
                         return RedirectToAction(nameof(Index));
+                    } else {
+                        ViewData["login"] = HttpContext.Session.GetString("login");
+                        return View();
                     }
 
-                    return View(user);
-
                 } catch (Exception e) {
+                    HttpContext.Session.Remove("login");
                     return View(e);
                 }
             } else {
